@@ -23,7 +23,8 @@ const AddProducto = () => {
 			unidad: unidad,
 			imagen: imagen
 		}
-		addProducto(data)
+		addProducto(data)		
+
 	}
 
 	return (
@@ -51,11 +52,17 @@ const AddProducto = () => {
 				</div>
 				<div className="form-group">
 					<label className="form-label">Unidad</label>
-					<input type="text" className="form-control" value={unidad} maxLength={20} onChange={setUnidad} />
+					<select className="form-control" value={unidad} onChange={setUnidad} >
+						<option value="value1">Und</option>
+						<option value="value2">Kg</option>
+						<option value="value3">Lts</option>
+					</select>
+					
+					{/* <input type="text" className="form-control" value={unidad} maxLength={20} onChange={setUnidad} /> */}
 				</div>
 				<div className="form-group">
 					<label className="form-label">Imagen</label>
-					<input type="text" className="form-control" value={imagen} maxLength={100} onChange={setImagen} />
+					<input type="text" className="form-control" value={imagen} maxLength={200} onChange={setImagen} />
 				</div>
 
 				<div className="d-grid">
