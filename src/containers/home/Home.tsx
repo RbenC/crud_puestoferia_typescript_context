@@ -5,10 +5,12 @@ import Producto from '../../components/producto/Producto'
 import AddFormProducto from '../../components/addformproducto/AddFormProducto'
 import HomeContext from '../../context/HomeContext'
 import Swal from 'sweetalert2'
+import EditFormProducto from '../../components/editformproducto/EditFormProducto'
 
 const Home = () => {
 	const [ productos, setProductos ] = useState(data)
-	// const [ edit, setEdit ] = useState(false)
+	const [ edit, setEdit ] = useState(false)
+	const [ editItem, setEditItem ] = useState({})
 
 	const addProducto = (nuevoProducto: any) => {
 		if (!nuevoProducto.nombre || nuevoProducto.nombre.length < 2) {
@@ -42,16 +44,20 @@ const Home = () => {
 		})
 	}
 
-	const updateProducto = (id: string) => {
-		console.log('Update')
+	const updateProducto = (dataItem: {}) => {
+		setEdit(true)
+		setEditItem(dataItem)
+		console.log(editItem)
+	}
+	const setUpdateProducto = (data: {}) => {
+		console.log(data)
 	}
 
 	return (
 		<div className="container">
 			<Bienvenida title="Bienvenidos" />
-			<HomeContext.Provider value={{ addProducto, deleteProducto, updateProducto }}>
-				<AddFormProducto />
-
+			<HomeContext.Provider value={{ addProducto, deleteProducto, updateProducto, setUpdateProducto }}>
+				{edit ? <EditFormProducto setEdit={setEdit} editItem={editItem} /> : <AddFormProducto />}
 				<div className="container">
 					{
 						<div className="row">
